@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet App</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('../images/Image 1.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    nav {
+        width: 100%;
+        background-color: #007BFF;
+        padding: 15px 0;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    li {
+        margin: 0 20px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+
+    #loginStatus {
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    main {
+    margin-top: 60px; 
+    width: 45%;
+    padding: 20px 20px 20px 40px; /* Adjusted padding for a more subtle look */
+    background-color: rgba(255, 255, 255, 0.9); /* Adjusted background color for better readability */
+    border-radius: 15px; /* Slightly increased border-radius for a smoother look */
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Adjusted box-shadow for a softer effect */
+}
+
+/* Added a transition for smoother hover effect */
+main:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Optional: Add a subtle animation for a smooth transition */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+main {
+    animation: fadeIn 1s;
+}
+
+    .infoRow {
+        display: table;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .infoRow span {
+        margin-right: 10px;
+    }
+
+    button {
+        padding: 12px 24px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease-in-out;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+        
+    }
+
+    nav button {
+        color: white;
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+
+    nav button:hover {
+        color: #0056b3;
+    }
+
+    #ethPriceBox, #LineaLinkBox {
+        font-weight: bold;
+        font-size: 1.2em;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    #ethPriceBox {
+        background: rgba(255, 223, 0, 0.8);
+        border: 1px solid gold;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    #LineaLinkBox {
+        background: rgba(0, 47, 134, 0.8);
+        border: 1px solid #002f86;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+    </style>
+</head>
+
+<body onload="checkLoginStatus(); getEthPrice(); getUserBalance2(); getAvaxPrice(); ">
+    <nav>
+        <ul>
+            <li><a href="HomePage.html">Home</a></li>
+            <li><a href="CreateWallet.html">Create Wallet</a></li>
+            <li><a href="SendCoins.html">Send Coins</a></li>
+            <li><a href="TransactionHistory.html">Transaction History</a></li>
+            <li><a href="RestoreAccount.html">Restore Account</a></li>
+            <li><a href="LogInPage.html">Login</a></li>
+            <li><button onclick="logOut()">Log Out</button></li>
+        </ul>
+    </nav>
+    <p id="loginStatus"></p>
+    <main>
+        <h1>Your Wallet</h1>
+        <div class="infoRow">
+            <span>Wallet:</span>
+            <span id="walletAddress"></span>
+        </div>
+        <div class="infoRow">
+            <span>Your ETH Balance:</span>
+            <span id="walletBalance"></span>
+        </div>
+        <div class="infoRow">
+            <span>Your Linea Balance:</span>
+            <span id="walletBalanceLINEA"></span>
+        </div>
+    </main>
+
+    <script src="../JS/lightwallet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.5.2/dist/web3.min.js"></script>
+    <script src="../JS/main.js"></script>    
+    
+</body>
+</html>

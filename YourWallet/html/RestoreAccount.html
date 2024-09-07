@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet App - Restore Account</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+   body {
+        font-family: Arial, sans-serif;
+        background-image: url('../images/Image 1.png');
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        }
+
+        nav {
+        width: 100%;
+        background-color: #007BFF;
+        padding: 10px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        }
+
+        ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        }
+
+        li {
+        margin: 0 10px;
+        }
+
+        a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+        a:hover {
+        color: #0056b3;
+        }
+
+        main {
+        margin-top: 80px; /* To prevent overlap with header */
+        width: 600px;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        }
+
+        form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        }
+
+        input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
+
+        label {
+        font-weight: bold;
+        }
+
+        button {
+        padding: 10px;
+        color: white;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
+        button:hover {
+        background-color: #0056b3;
+        }
+/* Added a transition for smoother hover effect */
+main:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Optional: Add a subtle animation for a smooth transition */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+main {
+    animation: fadeIn 1s;
+}
+        nav button {
+        color: White;
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        }
+
+        nav button:hover {
+        color: #0056b3;
+        }
+
+        .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        }
+
+        #accountAddress {
+        margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="HomePage.html">Home</a></li>
+            <li><a href="CreateWallet.html">Create Wallet</a></li>
+            <li><a href="SendCoins.html">Send Coins</a></li>
+            <li><a href="TransactionHistory.html">Transaction History</a></li>
+            <li><a href="RestoreAccount.html">Restore Account</a></li>
+            <li><a href="LogInPage.html">Login</a></li>
+            <li><button onclick="logOut()">Log Out</button></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>Restore Account</h1>
+        <form id="restoreAccountForm" onsubmit="event.preventDefault(); restoreAccountHTML();">
+            <div class="form-group">
+                <label for="seedPhrase">Seed Phrase</label>
+                <div id="seedPhrase">
+                    <input type="text" id="word1" name="word1" placeholder="Word 1" required>
+                    <input type="text" id="word2" name="word2" placeholder="Word 2" required>
+                    <input type="text" id="word3" name="word3" placeholder="Word 3" required>
+                    <input type="text" id="word4" name="word4" placeholder="Word 4" required>
+                    <input type="text" id="word5" name="word5" placeholder="Word 5" required>
+                    <input type="text" id="word6" name="word6" placeholder="Word 6" required>
+                    <input type="text" id="word7" name="word7" placeholder="Word 7" required>
+                    <input type="text" id="word8" name="word8" placeholder="Word 8" required>
+                    <input type="text" id="word9" name="word9" placeholder="Word 9" required>
+                    <input type="text" id="word10" name="word10" placeholder="Word 10" required>
+                    <input type="text" id="word11" name="word11" placeholder="Word 11" required>
+                    <input type="text" id="word12" name="word12" placeholder="Word 12" required>        
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+            </div>
+            <div id="errorMsg"></div>
+            <button type="submit">Restore Account</button>
+        </form>
+    </main>
+    <script src="../JS/lightwallet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.5.2/dist/web3.min.js"></script>
+    <script src="../JS/main.js"></script>
+    <script>
+        function restoreAccountHTML() {
+            // Get seed phrase from inputs
+            let seedPhrase = "";
+            for (let i = 1; i <= 12; i++) {
+                seedPhrase += document.getElementById('word' + i).value + " ";
+            }
+            seedPhrase = seedPhrase.trim();
+    
+            var message = restoreAccount(seedPhrase);
+    
+            // Display the returned message
+            document.getElementById('errorMsg').innerText = message;
+        }
+    </script>
+    
+</body>
+
+</html>
